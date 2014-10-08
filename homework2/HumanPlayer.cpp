@@ -68,7 +68,8 @@ std::string HumanPlayer::maxCombination() {
     if(hand.size() >= 5) {
         for(size_t i = 0; i < hand.size() - 4; i++) {
             std::string a = hand[i].value, b = hand[i + 1].value, c = hand[i + 2].value, d = hand[i + 3].value, e = hand[i + 4].value;
-            if(a == b && c == d && d == e) fullHouse = true;
+            if((a == b && c == d && d == e) ||
+                (a == b && b == c && d == e)) fullHouse = true;
         }
     }
 
