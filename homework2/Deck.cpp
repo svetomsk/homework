@@ -15,7 +15,7 @@ Deck::Deck() {
 
     for(size_t i = 0; i < 4; i++) {
         std::string suit = suits[i];
-        for(size_t j = 0; j < 12; j++) {
+        for(size_t j = 0; j < 13; j++) {
             std::string value = values[j];
             cards.push_back(OpenCard(suit, value));
         }

@@ -23,7 +23,9 @@ Deck deck;
 void Game::startGame() {
     gameCircle = true;
     std::string input;
+    deck.show();
     deck.shuffle();
+    deck.show();
 
 
     while(gameCircle) {
@@ -42,10 +44,11 @@ void Game::startGame() {
         findWinner();
 
 //        //seven cards round
-//        distributeCards(2);
+        distributeCards(2);
 //        turn();
-//        sortCards();
-//        flushPlayers();
+        sortCards();
+        flushPlayers();
+        findWinner();
 
         gameCircle = false;
     }

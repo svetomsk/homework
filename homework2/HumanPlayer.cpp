@@ -14,16 +14,16 @@ void HumanPlayer::takeCard(OpenCard a) {
     hand.push_back(a);
 }
 
-//flesh royal
-//strit flash
-//care
-//full house
-//flash
-//strit
-//trips
-//two pairs
-//pair
-//greatest card
+//flesh royal 9
+//strit flash 8
+//care 7
+//full house 6
+//flash 5
+//strit 4
+//trips 3
+//two pairs 2
+//pair 1
+//greatest card 0
 
 std::string HumanPlayer::maxCombination() {
     bool sameSuit = true;
