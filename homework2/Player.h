@@ -12,6 +12,7 @@ public:
     virtual void updateBalance(int) = 0;
     virtual void takeCard(OpenCard) = 0;
     virtual void flush() = 0;
+    virtual void increasePoints()=0;
     void sortCards();
     virtual std::string maxCombination()=0;
 };

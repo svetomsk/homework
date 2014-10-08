@@ -18,49 +18,70 @@ Game::Game(int count) {
 
 static int ante = 15;
 static bool gameCircle;
+static bool roundState;
 Deck deck;
 
 void Game::startGame() {
     gameCircle = true;
     std::string input;
-    deck.show();
     deck.shuffle();
     deck.show();
-
-
-    while(gameCircle) {
+    print << "Hi! This is 3-5-7 poker!\n";
+    distributeCards(3);
+    /*while(gameCircle) {
+        roundState = true;
         //three cards round
+        print << "First turn is coming!\n";
         distributeCards(3);
-//        turn();
+        turn();
         sortCards();
         flushPlayers();
         findWinner();
 
 //        //five cards round
-        distributeCards(2);
-//        turn();
-        sortCards();
-        flushPlayers();
-        findWinner();
+        if(roundState) {
+            print << "Second turn is coming!\n";
+            distributeCards(2);
+            turn();
+            sortCards();
+            flushPlayers();
+            findWinner();
+        }
 
 //        //seven cards round
-        distributeCards(2);
-//        turn();
-        sortCards();
-        flushPlayers();
-        findWinner();
+        if(roundState) {
+            print << "Third turn is coming!\n";
+            distributeCards(2);
+            turn();
+            sortCards();
+            flushPlayers();
+            findWinner();
+        }
 
-        gameCircle = false;
-    }
+        print << "Another one?\n";
+        while(input != "yes" && input != "no") {
+            read >> input;
+            if(input == "yes") {
+                gameCircle = true;
+            } else if(input == "no") {
+                gameCircle = false;
+                print << "OK. Goodbuy!\n";
+            }else {
+                print << "Don't know what do you mean!\n";
+            }
+        }
+    }*/
 }
 
 void Game::turn() {
     std::string input;
+    int countInGame = 0;
     for(size_t i = 0; i < numberOfPlayers; i++) {
-        print << "Are you in game?\n";
+        print << "Player " << i << ", are you in game?\n";
         read >> input;
         if(input == "yes") {
             inGame[i] = true;
+            countInGame++;
         } else if(input == "no") {
             inGame[i] = false;
         } else {
@@ -69,25 +90,40 @@ void Game::turn() {
             continue;
         }
     }
+    if(countInGame == 1) {
+        roundState = false;
+        for(size_t i = 0; i < numberOfPlayers; i++) {
+            if(inGame[i]) {
+                players[i]->increasePoints();
+                print << "Player " << i << " got point!\n";
+            }
+        }
+    }
+    if(countInGame == 0) {
+        roundState = false;
+    }
 }
 
 void Game::distributeCards(int count) {
     for(size_t i = 0; i < numberOfPlayers; i++) {
         for(size_t j = 0; j < count; j++) {
             players[i]->takeCard(deck.giveCard());
+            players[i]->flush();
         }
     }
 }
 
 void Game::flushPlayers() {
     for(size_t i = 0; i < numberOfPlayers; i++) {
-        players[i]->flush();
+        if(inGame[i])
+            players[i]->flush();
     }
 }
 
 void Game::findWinner() {
     for(size_t i = 0; i < numberOfPlayers; i++) {
-        print << players[i]->maxCombination() << "\n";
+        if(inGame[i])
+            print << players[i]->maxCombination() << "\n";
     }
 }
 

@@ -9,7 +9,7 @@ const std::string values[] = { "2", "3", "4", "5", "6",
                                "D", "K", "T"};
 
 
-int deckSize = 48;
+int deckSize = 52;
 
 Deck::Deck() {
 
@@ -33,6 +33,7 @@ void Deck::shuffle() {
 
 OpenCard Deck::giveCard() {
     OpenCard result = cards.back();
+    std::cout  << result.getValue();
     cards.pop_back();
     deckSize--;
     return result;

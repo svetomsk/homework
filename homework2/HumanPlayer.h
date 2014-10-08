@@ -8,6 +8,7 @@ public:
     void updateBalance(int);
     void takeCard(OpenCard);
     void flush();
+    void increasePoints();
     std::string maxCombination();
 };
 

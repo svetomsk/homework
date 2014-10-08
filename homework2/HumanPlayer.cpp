@@ -101,3 +101,7 @@ void HumanPlayer::flush() {
     }
     std::cout << std::endl;
 }
+
+void HumanPlayer::increasePoints() {
+    points++;
+}
