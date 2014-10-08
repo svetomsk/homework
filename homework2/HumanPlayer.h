@@ -8,6 +8,7 @@ public:
     void updateBalance(int);
     void takeCard(OpenCard);
     void flush();
+    std::string maxCombination();
 };
 
 #endif // HUMANPLAYER_H

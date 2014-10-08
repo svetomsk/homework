@@ -3,13 +3,12 @@
 #include <iostream>
 
 class Card {
-protected:
+public:
     std::string suit;
     std::string value;
-public:
+
     Card(std::string, std::string);
     virtual std::string getValue()=0;
-//    virtual operator == (const & Card)=0;
 };
 
 #endif // CARD_H

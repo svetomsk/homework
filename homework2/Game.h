@@ -13,6 +13,9 @@ protected:
     void turn();
     void distributeCards(int);
     void flushPlayers();
+    void findWinner();
+    void sortCards();
+
 public:
     Game(int);
     void startGame();

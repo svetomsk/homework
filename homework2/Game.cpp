@@ -28,18 +28,22 @@ void Game::startGame() {
     while(gameCircle) {
         //three cards round
         distributeCards(3);
-        turn();
+//        turn();
+        sortCards();
         flushPlayers();
+        findWinner();
 
-        //five cards round
-        distributeCards(2);
-        turn();
-        flushPlayers();
+//        //five cards round
+//        distributeCards(2);
+//        turn();
+//        sortCards();
+//        flushPlayers();
 
-        //seven cards round
-        distributeCards(2);
-        turn();
-        flushPlayers();
+//        //seven cards round
+//        distributeCards(2);
+//        turn();
+//        sortCards();
+//        flushPlayers();
 
         gameCircle = false;
     }
@@ -73,6 +77,28 @@ void Game::distributeCards(int count) {
 void Game::flushPlayers() {
     for(size_t i = 0; i < numberOfPlayers; i++) {
         players[i]->flush();
+    }
+}
+
+//flesh royal
+//strit flash
+//care
+//full house
+//flash
+//strit
+//trips
+//two pairs
+//pair
+//greatest card
+void Game::findWinner() {
+    for(size_t i = 0; i < numberOfPlayers; i++) {
+        print << players[i]->maxCombination();
+    }
+}
+
+void Game::sortCards() {
+    for(size_t i = 0; i < numberOfPlayers; i++) {
+        players[i]->sortCards();
     }
 }
 
