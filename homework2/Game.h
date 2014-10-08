@@ -1,0 +1,19 @@
+#ifndef GAME_H
+#define GAME_H
+#include <vector>
+#include "HumanPlayer.h"
+#include "Deck.h"
+
+class Game {
+protected:
+    std::vector<Player*> players;
+    int numberOfPlayers;
+public:
+    Game(int);
+    void startGame();
+    int stringToInt(std::string);
+    std::string intToString(int);
+    ~Game();
+};
+
+#endif // GAME_H
