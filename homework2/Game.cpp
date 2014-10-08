@@ -28,7 +28,7 @@ void Game::startGame() {
     deck.show();
     print << "Hi! This is 3-5-7 poker!\n";
     distributeCards(3);
-    /*while(gameCircle) {
+    while(gameCircle) {
         roundState = true;
         //three cards round
         print << "First turn is coming!\n";
@@ -70,7 +70,7 @@ void Game::startGame() {
                 print << "Don't know what do you mean!\n";
             }
         }
-    }*/
+    }
 }
 
 void Game::turn() {
