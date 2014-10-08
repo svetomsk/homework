@@ -7,6 +7,7 @@
 class Game {
 protected:
     std::vector<Player*> players;
+    std::vector<bool> inGame;
     int numberOfPlayers;
 public:
     Game(int);
