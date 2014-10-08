@@ -1,5 +1,6 @@
 #include "Game.h"
 #include <cstdlib>
+#include <utility>
 #include <sstream>
 #define print std::cout
 #define read std::cin
@@ -34,10 +35,11 @@ void Game::startGame() {
         findWinner();
 
 //        //five cards round
-//        distributeCards(2);
+        distributeCards(2);
 //        turn();
-//        sortCards();
-//        flushPlayers();
+        sortCards();
+        flushPlayers();
+        findWinner();
 
 //        //seven cards round
 //        distributeCards(2);
@@ -80,19 +82,9 @@ void Game::flushPlayers() {
     }
 }
 
-//flesh royal
-//strit flash
-//care
-//full house
-//flash
-//strit
-//trips
-//two pairs
-//pair
-//greatest card
 void Game::findWinner() {
     for(size_t i = 0; i < numberOfPlayers; i++) {
-        print << players[i]->maxCombination();
+        print << players[i]->maxCombination() << "\n";
     }
 }
 
