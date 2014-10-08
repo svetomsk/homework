@@ -15,6 +15,7 @@ protected:
     void flushPlayers();
     void findWinner();
     void sortCards();
+    void ante();
 
 public:
     Game(int);

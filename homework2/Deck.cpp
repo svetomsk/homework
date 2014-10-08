@@ -33,7 +33,6 @@ void Deck::shuffle() {
 
 OpenCard Deck::giveCard() {
     OpenCard result = cards.back();
-    std::cout  << result.getValue();
     cards.pop_back();
     deckSize--;
     return result;

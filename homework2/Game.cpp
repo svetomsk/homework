@@ -16,7 +16,7 @@ Game::Game(int count) {
     }
 }
 
-static int ante = 15;
+static int ant = 15;
 static bool gameCircle;
 static bool roundState;
 Deck deck;
@@ -25,13 +25,12 @@ void Game::startGame() {
     gameCircle = true;
     std::string input;
     deck.shuffle();
-    deck.show();
     print << "Hi! This is 3-5-7 poker!\n";
-    distributeCards(3);
     while(gameCircle) {
         roundState = true;
         //three cards round
         print << "First turn is coming!\n";
+        ante();
         distributeCards(3);
         turn();
         sortCards();
@@ -77,6 +76,8 @@ void Game::turn() {
     std::string input;
     int countInGame = 0;
     for(size_t i = 0; i < numberOfPlayers; i++) {
+        print << "Your cards: ";
+        players[i]->flush();
         print << "Player " << i << ", are you in game?\n";
         read >> input;
         if(input == "yes") {
@@ -108,7 +109,6 @@ void Game::distributeCards(int count) {
     for(size_t i = 0; i < numberOfPlayers; i++) {
         for(size_t j = 0; j < count; j++) {
             players[i]->takeCard(deck.giveCard());
-            players[i]->flush();
         }
     }
 }
@@ -130,6 +130,13 @@ void Game::findWinner() {
 void Game::sortCards() {
     for(size_t i = 0; i < numberOfPlayers; i++) {
         players[i]->sortCards();
+    }
+}
+
+void Game::ante() {
+    for(size_t i = 0; i < numberOfPlayers; i++) {
+        BANK += ant;
+        players[i]->updateBalance(-ant);
     }
 }
 

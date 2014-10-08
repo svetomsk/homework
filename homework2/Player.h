@@ -13,7 +13,7 @@ public:
     virtual void takeCard(OpenCard) = 0;
     virtual void flush() = 0;
     virtual void increasePoints()=0;
-    void sortCards();
+    virtual void sortCards() final;
     virtual std::string maxCombination()=0;
 };
 
