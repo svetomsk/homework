@@ -2,6 +2,7 @@
 
 HumanPlayer::HumanPlayer(int bal) {
     balance = bal;
+    points = 0;
 }
 
 void HumanPlayer::updateBalance(int delta) {

@@ -9,6 +9,10 @@ protected:
     std::vector<Player*> players;
     std::vector<bool> inGame;
     int numberOfPlayers;
+
+    void turn();
+    void distributeCards(int);
+    void flushPlayers();
 public:
     Game(int);
     void startGame();

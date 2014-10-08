@@ -5,7 +5,7 @@
 
 class Player {
 protected:
-    int balance;
+    int balance, points;
     std::vector<OpenCard> hand;
 public:
     virtual void updateBalance(int) = 0;
