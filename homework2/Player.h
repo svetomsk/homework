@@ -1,20 +1,25 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include <vector>
-#include "OpenCard.h"
+#include <utility>
+#include "Card.h"
 
 class Player {
-protected:
-    int balance, points;
-    std::vector<OpenCard> hand;
-
-public:
-    virtual void updateBalance(int) = 0;
-    virtual void takeCard(OpenCard) = 0;
-    virtual void flush() = 0;
-    virtual void increasePoints()=0;
-    virtual void sortCards() final;
-    virtual std::string maxCombination()=0;
+  class Hand {
+    void display();
+    std::pair<std::string, std::string> getBestCombination();
+    void takeCard();
+    Card getCard();
+  };
+  int getBlind();
+  Card giveCard(int);
+  bool isDealer();
+  std::string getRoundChoise();
+  void performCardChange();
+  void lose();
+  void win();
 };
+
+
 
 #endif // PLAYER_H

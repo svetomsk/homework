@@ -1,0 +1,10 @@
+*.config
+*.creator
+*.creator.user
+*.includes
+*.pro.user
+*.files
+*.gch
+*~
+a*
+test.cpp

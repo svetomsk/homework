@@ -1,14 +1,11 @@
 #ifndef CARD_H
 #define CARD_H
-#include <iostream>
+#include <string>
 
 class Card {
-public:
-    std::string suit;
-    std::string value;
-
-    Card(std::string, std::string);
-    virtual std::string getValue()=0;
+  std::string tryLook(int);
+  void setOwner(int);
+  std::string open();
 };
 
 #endif // CARD_H
