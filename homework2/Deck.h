@@ -14,6 +14,7 @@ private:
 
     Deck();
     std::string open(Card &);
+    void setSecret(Card &, int);
 public:
     Card getCard();
     void shuffle();

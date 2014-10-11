@@ -1,11 +1,11 @@
 #include "Deck.h"
+#include <algorithm>
 
 Deck::Deck() {
-    std::cout << "DECK";
     for(size_t i = 0; i < suitsCount; i++) {
         for(size_t j = 0; j < valuesCount; j++) {
-            Card cur(i, j);
-            stash.push_back(cur);
+            Card cur(i, j, 0);
+            stash.push_back(std::move(cur));
         }
     }
 }
@@ -28,6 +28,10 @@ void Deck::shuffle() {
 
 std::string Deck::open(Card & card) {
     return card.open();
+}
+
+void Deck::setSecret(Card & card, int value) {
+    card.secret = value;
 }
 
 void Deck::display() {

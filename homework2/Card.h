@@ -6,14 +6,12 @@
 class Card {
 
     friend class Deck;
-    int value, suit;
+    int value, suit, secret;
     static std::string suits[];
     static std::string values[];
 
     std::string open();
-    Card(int,int);
-    Card() = delete;
-    void operator = (const Card &);
+    Card(int,int, int);
     void swap(Card &);
 
 public:
@@ -22,7 +20,10 @@ public:
     static enum { HEARTS, KARO, CLUBS, SPADES } s;
     static enum { TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE } v;
 
+    Card() = delete;
     Card(const Card&);
+    void operator = (const Card &);
+
     std::string tryLook(int);
     void setOwner(int);
 };

@@ -5,19 +5,11 @@
 #include "Card.h"
 
 class Player {
-  class Hand {
-    void display();
-    std::pair<std::string, std::string> getBestCombination();
-    void takeCard();
-    Card getCard();
-  };
-  int getBlind();
-  Card giveCard(int);
-  bool isDealer();
-  std::string getRoundChoise();
-  void performCardChange();
-  void lose();
-  void win();
+private:
+    int secret;
+public:
+    Player();
+    std::string getRoundChoise();
 };
 
 #endif // PLAYER_H

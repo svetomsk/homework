@@ -7,9 +7,15 @@ std::string Card::values[] = { "2", "3", "4", "5", "6",
 int Card::suitsCount = 4;
 int Card::valuesCount = 13;
 
-Card::Card(int s, int v) : suit(s), value(v) {}
+Card::Card(int s, int v, int sec) : suit(s), value(v), secret(sec) {}
 
-Card::Card(const Card & other) : suit(other.suit), value(other.value) { }
+Card::Card(const Card & other) : suit(other.suit), value(other.value), secret(other.secret) {}
+
+void Card::operator =(const Card & other) {
+    suit = other.suit;
+    value = other.value;
+    secret = other.secret;
+}
 
 std::string Card::open() {
     std::string res;
