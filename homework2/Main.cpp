@@ -5,6 +5,8 @@ using namespace std;
 
 int main()
 {
-    return 0;
+  Game g;
+  g.foo();
+  return 0;
 }
 

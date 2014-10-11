@@ -20,6 +20,4 @@ class Player {
   void win();
 };
 
-
-
 #endif // PLAYER_H
