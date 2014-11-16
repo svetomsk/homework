@@ -1,3 +1,4 @@
+
 set(SOURCE_FILES
     Card.cpp
     Deck.cpp
@@ -16,3 +17,4 @@ set(SOURCE_FILES
 )
 
 add_executable(Poker ${SOURCE_FILES})
+target_link_libraries(Poker)

@@ -7,6 +7,7 @@ class Card {
 public:
     friend class Deck;
     friend class Game;
+    friend class SimpleTest;
     friend class PlayerData;
 
     // Possible card values
