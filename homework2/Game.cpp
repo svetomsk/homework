@@ -1,6 +1,11 @@
 #include "Game.h"
 #include <algorithm>
-void Game::foo() {
-    Card cur = deck.getCard();
-    deck.setSecret(cur, 300);
+
+Game::Game() {
+
+}
+
+void Game::startGame() {
+    //give cards
+    std::cout << "Hellow world";
 }
