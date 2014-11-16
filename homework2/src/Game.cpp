@@ -4,9 +4,11 @@ std::vector<bool> inGame;
 
 void Game::giveCards(int count) {
     for(int i = 0; i < count; i++) {
-        players.push_back(new HumanPlayer);
+        std::shared_ptr<Player> temp(new HumanPlayer);
+        players.push_back(temp);
         for (size_t j = 0; j < 5; j++) {
-            data.push_back(new PlayerData(Rules::stdBank));
+            std::shared_ptr<PlayerData> t(new PlayerData(Rules::stdBank));
+            data.push_back(t);
             data[i]->takeCard(deck.getCard());
         }
     }
@@ -135,11 +137,6 @@ void Game::startGame(int count) {
     }
 }
 
-Game::~Game() {
-    for(size_t i = 0; i < players.size(); i++) {
-        delete players[i];
-    }
-    for(size_t i = 0; i < data.size(); i++) {
-        delete data[i];
-    }
+Card Game::makeCard(Card::Suit s, Card::Value v) {
+    return deck.makeCard(s, v);
 }

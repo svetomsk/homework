@@ -15,6 +15,11 @@ Card Deck::getCard() {
     return cur;
 }
 
+Card Deck::makeCard(Card::Suit s, Card::Value v) {
+    Card c(s, v);
+    return c;
+}
+
 void Deck::shuffle() {
     srand(time(NULL));
     int countOfSwaps = 100;
