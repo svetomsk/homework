@@ -67,6 +67,8 @@ public:
     */
     void operator = (const Card &);
 
+    bool operator ==(const Card &) const;
+
     /**
     * Returns string value of card if owner is corrent
     * @param owner is who ask for access

@@ -24,6 +24,7 @@ add_library(PokerLib ${SOURCE_FILES})
 set(TEST_SOURCE
     CardTest.cpp
     RulesTest.cpp
+    PlayerDataTest.cpp
 )
 
 add_executable( test_runner ${TEST_SOURCE})

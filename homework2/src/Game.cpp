@@ -45,7 +45,15 @@ void Game::performAuction() {
                     std::cout << "Raise shoud be more that current bet.\n";
                     continue;
                 }
-                bank += atoi(value.c_str());
+                int raiseCount = atoi(value.c_str());
+                if(raiseCount > data[i]->cash) {
+                    std::cout << "Your bet must be less than you current cash.\n";
+                    i--;
+                    continue;
+                }
+                bank += raiseCount;
+                data[i]->cash -= raiseCount;
+
                 if (!currentBet) {
                     currentBet = curValue;
                 }
@@ -89,6 +97,37 @@ void Game::performCardsExchange() {
     }
 }
 
+void Game::performFinalStanding() {
+    int maxCombination = 0;
+    std::vector<int> winners;
+    winners.push_back(0);
+    for(int i = 0; i < players.size(); i++) {
+        if(inGame[i]) {
+            int curCombination =  Rules::getCombinationRank(data[i]->cards);
+            if(curCombination > maxCombination) {
+                maxCombination = curCombination;
+                winners.erase(winners.begin(), winners.end());
+                winners.push_back(i + 1);
+            } else if(curCombination == maxCombination) {
+                winners.push_back(i + 1);
+            }
+
+        }
+    }
+
+    std::cout << "Final standing:\n";
+    for(int i = 0; i < players.size(); i++) {
+        std::cout << "Player " << i << " cards: ";
+        data[i]->display();
+    }
+    std::cout << "Winner(-s): \n";
+    int prize = bank/winners.size();
+    for(int i = 0; i < winners.size(); i++) {
+        std::cout << "Player " << winners[i] << " won " << prize << std::endl;
+    }
+
+}
+
 Game::Game() {
 }
 
@@ -100,47 +139,15 @@ void Game::startGame(int count) {
     std::vector<bool> cur(count, true);
     inGame = cur;
     bank = 0;
-    std::vector<Card> cards;
-    auto p = std::make_shared<HumanPlayer>();
-    cards.emplace_back(Game::makeCard(Card::Sprade, Card::D2, p));
-    cards.emplace_back(Game::makeCard(Card::Heart, Card::D2, p));
-    cards.emplace_back(Game::makeCard(Card::Diamond, Card::D2, p));
-    cards.emplace_back(Game::makeCard(Card::Club, Card::D5, p));
-    cards.emplace_back(Game::makeCard(Card::Diamond, Card::D5, p));
-    Rules::getCombinationRank(cards);
-//    giveCards(count);
-//    std::cout << "First round of auction getting started now!\n";
-//    performAuction();
-//    std::cout << "Cards exchange round getting started now!\n";
-//    performCardsExchange();
-//    std::cout << "Second round of auction getting started now!\n";
-//    performAuction();
-//
-//    int maxCombination = 0;
-//    std::vector<int> winners;
-//    winners.push_back(0);
-//    for(int i = 0; i < players.size(); i++) {
-//        if(inGame[i]) {
-//            int curCombination =  Rules::getCombinationRank(data[i]->cards);
-//            if(curCombination > maxCombination) {
-//                maxCombination = curCombination;
-//                winners.erase(winners.begin(), winners.end());
-//                winners.push_back(i + 1);
-//            } else if(curCombination == maxCombination) {
-//                winners.push_back(i + 1);
-//            }
-//
-//        }
-//    }
-//
-//    std::cout << "Final standing:\n";
-//    for(int i = 0; i < players.size(); i++) {
-//        std::cout << "Player " << i << " cards: ";
-//        data[i]->display();
-//    }
-//    std::cout << "Winner(-s): \n";
-//    int prize = bank/winners.size();
-//    for(int i = 0; i < winners.size(); i++) {
-//        std::cout << "Player " << winners[i] << " won " << prize << std::endl;
-//    }
+
+    giveCards(count);
+    std::cout << "First round of auction getting started now!\n";
+    performAuction();
+    std::cout << "Cards exchange round getting started now!\n";
+    performCardsExchange();
+    std::cout << "Second round of auction getting started now!\n";
+    performAuction();
+
+    performFinalStanding();
+
 }

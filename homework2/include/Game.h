@@ -33,6 +33,12 @@ private:
     * Peform round of cards exchange
     */
     void performCardsExchange();
+
+    /**
+    * Displayes final standing
+    */
+    void performFinalStanding();
+
 public:
     /**
     * Default constructor. Do nothing.

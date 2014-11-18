@@ -14,6 +14,10 @@ void Card::operator =(const Card & other) {
     value = other.value;
 }
 
+bool Card::operator ==(const Card & other) const {
+    return (suit == other.suit && value == other.value);
+}
+
 void Card::setOwner(std::shared_ptr<Player> const & own) {
     owner = own;
 }
