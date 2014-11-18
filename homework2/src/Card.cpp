@@ -14,6 +14,18 @@ void Card::operator =(const Card & other) {
     value = other.value;
 }
 
+void Card::setOwner(std::shared_ptr<Player> const & own) {
+    owner = own;
+}
+
+std::pair<Card::Suit, Card::Value> Card::tryLook(std::shared_ptr<Player> owner) const{
+    if(owner == this->owner) {
+        return std::make_pair(suit, value);
+    } else {
+        throw InvalidAccess();
+    }
+}
+
 std::string Card::open() {
     std::string res;
     res.append("|");
@@ -28,7 +40,7 @@ void Card::swap(Card & other) {
     std::swap(value, other.value);
 }
 
-Card::Suit Card::getSuit() const{
+Card::Suit Card::getSuit()const{
     return suit;
 }
 

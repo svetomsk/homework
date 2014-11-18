@@ -16,8 +16,8 @@ class Game {
 private:
     Deck deck; // current deck
     unsigned int bank; // current bank
-    std::vector<Player*> players; // list of players
-    std::vector<PlayerData*> data; // list of player data
+    std::vector<std::shared_ptr<Player>> players; // list of players
+    std::vector<std::shared_ptr<PlayerData>> data; // list of player data
 
     /**
     * Gives five cards to each players
@@ -39,10 +39,9 @@ public:
     */
     Game();
 
-    /**
-    * Destructor clears memory
-    */
-    ~Game();
+    static Card makeCard(Card::Suit s, Card::Value v, std::shared_ptr<Player> const & p) {
+        return Deck::makeCard(s, v, p);
+    }
 
     /**
     * Starts game.

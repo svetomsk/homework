@@ -4,9 +4,9 @@ set(SOURCE_FILES
     Deck.cpp
     Game.cpp
     HumanPlayer.cpp
-    Main.cpp
     PlayerData.cpp
     Rules.cpp
+    Main.cpp
     ../include/Card.h
     ../include/Deck.h
     ../include/Game.h
@@ -17,4 +17,3 @@ set(SOURCE_FILES
 )
 
 add_executable(Poker ${SOURCE_FILES})
-target_link_libraries(Poker)

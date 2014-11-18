@@ -9,13 +9,17 @@ class Deck {
 private:
     friend class Game;
     std::vector<Card> stash;
-
     /**
     * Constucts deck with standart set of cards
     */
     Deck();
-
+    static Card makeCard(Card::Suit s, Card::Value v, std::shared_ptr<Player> const & p) {
+        Card c(s, v);
+        c.setOwner(p);
+        return std::move(c);
+    }
 public:
+
     /**
     * Method to get card from the top of deck and
     * remove it from deck.

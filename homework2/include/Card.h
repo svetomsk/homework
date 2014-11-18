@@ -2,6 +2,11 @@
 #define CARD_H
 #include <string>
 #include <iostream>
+#include <memory>
+
+#include "InvalidAccessException.h"
+
+class Player;
 
 class Card {
 public:
@@ -13,19 +18,19 @@ public:
     // Possible card values
     enum Value {
         NONE = 0x00,
-        D2 = 0x02,
-        D3 = 0x03,
-        D4 = 0x04,
-        D5 = 0x05,
-        D6 = 0x06,
-        D7 = 0x07,
-        D8 = 0x08,
-        D9 = 0x09,
-        D10 = 0x0A,
-        KNAVE = 0x0B,
-        QUEEN = 0x0C,
-        KING = 0x0D,
-        ACE = 0x0E,
+        D2 = 0x0002,
+        D3 = 0x0003,
+        D4 = 0x0004,
+        D5 = 0x0005,
+        D6 = 0x0006,
+        D7 = 0x0007,
+        D8 = 0x0008,
+        D9 = 0x0009,
+        D10 = 0x000A,
+        KNAVE = 0x000B,
+        QUEEN = 0x000C,
+        KING = 0x000D,
+        ACE = 0x000E,
     };
 
     // Possible card suits enumeration
@@ -62,8 +67,15 @@ public:
     */
     void operator = (const Card &);
 
+    /**
+    * Returns string value of card if owner is corrent
+    * @param owner is who ask for access
+    */
+    std::pair<Card::Suit, Card::Value> tryLook(std::shared_ptr<Player> owner) const;
+
 private:
     Value value;
+    std::shared_ptr<Player> owner;
     Suit suit;
     static std::string suits[];
     static std::string values[];
@@ -73,6 +85,12 @@ private:
     * @return The returning string is graphics equivalent of card
     */
     std::string open();
+
+    /**
+    * Set an owner to card
+    * @param owner is who must be new owner
+    */
+    void setOwner(std::shared_ptr<Player> const & owner);
 
     /**
     * Construct card based on Suit and Value in arguments

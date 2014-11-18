@@ -26,8 +26,8 @@ namespace{
                     secondCard = curValue;
             }
         }
-        if(highestCard == Card::NONE) return checkHighCard(cards);
 
+        if(highestCard == Card::NONE) return checkHighCard(cards);
         return (secondCard != Card::NONE ? Rules::TwoPairs : Rules::Pair) | highestCard << 8 | secondCard;
     }
 
@@ -82,17 +82,20 @@ namespace{
         for(auto & c : cards) {
             Card::Value curValue = c.getValue();
             values[curValue - Card::D2]++;
-            if(values[curValue - Card::D2] == 3) {
-                threeValue = std::max(threeValue, curValue);
-            }
-            if(values[curValue - Card::D2]) {
+            if(values[curValue - Card::D2] == 2) {
                 twoValue = std::max(twoValue, curValue);
+            }
+            if(values[curValue - Card::D2] == 3) {
+                if(threeValue < curValue) {
+                    threeValue = curValue;
+                    twoValue = Card::NONE;
+                }
             }
         }
         if(twoValue == Card::NONE || threeValue == Card::NONE) {
             return 0;
         }
-        return Rules::FullHouse | twoValue << 8 | threeValue;
+        return Rules::FullHouse | std::max(twoValue, threeValue) << 8 | std::min(twoValue, threeValue);
     }
 
     unsigned int checkQuads(std::vector<Card> const & cards) {
@@ -132,7 +135,6 @@ namespace Rules {
                 highestCard = std::max(highestCard, curValue);
             }
         }
-
         return highestCard == Card::NONE ? checkPairs(cards) : Rules::Set | highestCard;
     }
 
