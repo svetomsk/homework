@@ -25,6 +25,7 @@ set(TEST_SOURCE
     CardTest.cpp
     RulesTest.cpp
     PlayerDataTest.cpp
+    TestDeck.cpp
 )
 
 add_executable( test_runner ${TEST_SOURCE})

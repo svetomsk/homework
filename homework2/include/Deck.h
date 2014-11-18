@@ -8,7 +8,7 @@
 class Deck {
 private:
     friend class Game;
-    std::vector<Card> stash;
+    friend class TestDeck;
     /**
     * Constucts deck with standart set of cards
     */
@@ -20,6 +20,7 @@ private:
     }
 public:
 
+    std::vector<Card> stash;
     /**
     * Method to get card from the top of deck and
     * remove it from deck.

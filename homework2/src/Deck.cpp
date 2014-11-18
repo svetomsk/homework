@@ -4,7 +4,7 @@ Deck::Deck() {
     for(int i = Card::Sprade; i <= Card::Heart; i++) {
         for(int j = Card::D2; j <= Card::ACE; j++) {
             Card cur((Card::Suit)i, (Card::Value)j);
-            stash.push_back(cur);
+            stash.emplace_back(cur);
         }
     }
 }

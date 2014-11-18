@@ -49,6 +49,11 @@ public:
         return Deck::makeCard(s, v, p);
     }
 
+    static Deck makeDeck() {
+        static Deck d;
+        return d;
+    }
+
     /**
     * Starts game.
     * @param count is amount of players in game
