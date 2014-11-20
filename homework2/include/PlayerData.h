@@ -20,8 +20,9 @@ public:
     /**
     * Method to give card to player
     * @param card is card to take
+    * @param p is owner for card
     */
-    void takeCard(Card card);
+    void takeCard(Card card, std::shared_ptr<Player> const & p);
 
     /**
     * Gets card position and exchange it

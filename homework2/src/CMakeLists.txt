@@ -14,6 +14,7 @@ set(SOURCE_FILES
     ../include/Player.h
     ../include/PlayerData.h
     ../include/Rules.h
+    ../include/InvalidAccessException.h
 )
 
 add_executable(Poker ${SOURCE_FILES})

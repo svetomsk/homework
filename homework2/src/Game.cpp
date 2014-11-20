@@ -9,7 +9,7 @@ void Game::giveCards(int count) {
         for (size_t j = 0; j < 5; j++) {
             std::shared_ptr<PlayerData> t(new PlayerData(Rules::stdBank));
             data.push_back(t);
-            data[i]->takeCard(deck.getCard());
+            data[i]->takeCard(deck.getCard(), players.back());
         }
     }
 }
@@ -35,6 +35,7 @@ void Game::performAuction() {
                     continue;
                 } else {
                     bank += currentBet;
+                    data[i]->cash -= currentBet;
                 }
             } else if (answer == "raise") {
                 std::string value;

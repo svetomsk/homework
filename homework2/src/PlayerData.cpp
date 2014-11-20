@@ -4,7 +4,8 @@ PlayerData::PlayerData(unsigned int cash) {
     this->cash = cash;
 }
 
-void PlayerData::takeCard(Card a) {
+void PlayerData::takeCard(Card a, std::shared_ptr<Player> const & p) {
+    a.setOwner(p);
     cards.push_back(a);
 }
 
